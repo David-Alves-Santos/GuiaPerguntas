@@ -5,6 +5,7 @@ const perguntaController = {
   listarPerguntas: async (req, res) => {
     try {
       const perguntas = await Pergunta.findAll({
+    
         raw: true,
         order: [['id', 'DESC']],
       });
@@ -15,8 +16,17 @@ const perguntaController = {
     }
   },
 
+  exibirFormularioPergunta: (req, res) => {
+    res.render("perguntar");
+  },
+
   criarPergunta: async (req, res) => {
     const { titulo, descricao } = req.body;
+
+    if (!titulo || !descricao) {
+      return res.status(400).send("Título e descrição são obrigatórios.");
+    }
+    
     try {
       await Pergunta.create({ titulo, descricao });
       res.redirect("/");

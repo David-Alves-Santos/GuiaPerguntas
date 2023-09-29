@@ -1,6 +1,7 @@
 const Respostas = require("../models/Resposta");
 
 
+
 const respostaController = {
 criarResposta: async (req, res) => {
     try {
@@ -17,7 +18,9 @@ criarResposta: async (req, res) => {
         console.error(error);
         res.status(500).send("Erro ao criar resposta");
     }
-}
+},
+
+
 
 };
 
